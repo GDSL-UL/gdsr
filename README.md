@@ -38,8 +38,7 @@ This will mount a folder from the host on the `work` folder on the container sid
 
 ## Build [Optional]
 
-**NOTE** - This is _not_ required or recommended unless you know what you're
-doing!
+**NOTE** - This is _not_ required or recommended unless you know what you're doing!
 
 If, instead of installing a built image, you prefer to build your own locally,
 you will need a copy of this repository. Once that is available in your
