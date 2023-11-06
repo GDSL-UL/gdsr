@@ -1,4 +1,4 @@
-FROM darribas/gdsr:2.0
+FROM darribas/gdsr:3.0
 
 LABEL org.label-schema.license="GPL-2.0" \
       org.label-schema.vcs-url="https://github.com/gdsl-ul/gdsr" \
@@ -18,9 +18,22 @@ USER rstudio
 RUN . /opt/conda/etc/profile.d/conda.sh \
  && . /opt/conda/etc/profile.d/mamba.sh \
  && conda activate \
- && mamba create --name gds --file https://github.com/darribas/gds_env/raw/v9.1/gds_py/gds_py_explicit_ubuntu-latest.txt \
+ && mamba create --name gds --file https://github.com/darribas/gds_env/raw/v10.0/gds_py/gds_py_explicit_ubuntu-latest.txt \
  && mamba activate gds \
- && pip install -r https://github.com/darribas/gds_env/raw/v9.1/gds_py/gds_py_pip.txt
+ # pip does not make it to explicit
+ # Bring them over manually from:
+ # https://github.com/darribas/gds_env/blob/v10.0/gds_py/gds_py.yml#L49-L59
+ && pip install \
+      jupyterlab-geojson \
+      jupyterlab_myst \
+      matplotlib-scalebar \
+      polars \
+      pymorton \
+      pytest-cov \
+      pytest-tornasync \
+      simplification \
+      urbangrammar-graphics \
+      watermark
 
 USER root
 # Install reticulate

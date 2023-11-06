@@ -1,5 +1,5 @@
-# Pulled on May 4th'23
-FROM rocker/geospatial:4.3.0
+# Pulled on Nov 6th'23
+FROM rocker/geospatial:4.3.2
 
 LABEL org.label-schema.license="GPL-2.0" \
       org.label-schema.vcs-url="https://github.com/gdsl-ul/gdsr" \
@@ -7,25 +7,11 @@ LABEL org.label-schema.license="GPL-2.0" \
       maintainer="Dani Arribas-Bel <D.Arribas-Bel@liverpool.ac.uk>"
 
 # Load up stack
-RUN wget https://github.com/darribas/gds_env/raw/v9.1/gds/install_R_gds.sh \
+RUN wget https://github.com/darribas/gds_env/raw/v10.0/gds/install_R_gds.sh \
     -O $HOME/install_R_gds.sh \
  && chmod +x $HOME/install_R_gds.sh \
  && $HOME/install_R_gds.sh \
  && rm $HOME/install_R_gds.sh
-
-# [Temp] Extra packages for courses
-RUN R -e "install.packages(c( \
-        'caret', \
-        'ggimage', \
-        'ggpmisc', \
-        'ggformula', \
-        'modelsummary', \
-        'Metrics', \
-        'plotly', \
-        'rpart.plot', \
-        'ranger', \
-        'tidycensus' \
-            ), repos='https://cran.rstudio.com');"
 
 #--- tippecanoe (here for mapboxapi) ---#
 RUN git clone https://github.com/felt/tippecanoe.git \
